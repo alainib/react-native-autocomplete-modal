@@ -14,15 +14,15 @@ import {
 
 import { Button } from "react-native-elements";
 import I18n from "react-native-i18n";
-import Icon from "react-native-vector-icons/FontAwesome";
-import * as tools from "../services/tools";
-import styles from "../css/styles";
+import Icon from "react-native-vector-icons/FontAwesome"; 
+ 
 
 /*
-composant pour avoir l'autocomplete sur un champ.
-état initial: affiche une "icone + input + button delete"
-au click sur l'input ouvre une modal avec "icone + input + button delete" et affichera en dessous toute les propositions
-au click sur une proposition ferme la modale 
+
+componant to get autocomplete on a input field
+inital state : display a row with "icone"+ input + "clear button"
+when you clik on the input it open a modal with the same previous row, and will display autocompleted item bottom it.
+when you clik on item, set it with onSelectCallback function and close modal 
 
 
 usage  :
@@ -82,7 +82,7 @@ export default class Autocomplete extends React.PureComponent {
         visible={this.state.modalOrganeVisible}
         onRequestClose={() => this.toggleModalVisible()}
       >
-        <View style={styles.alignCenter}>
+        <View style={thisstyles.alignCenter}>
           <Text style={thisstyles.title}>{this.props.title}</Text>
         </View>
         <View style={thisstyles.searchSection}>
@@ -118,11 +118,11 @@ export default class Autocomplete extends React.PureComponent {
           ItemSeparatorComponent={this.renderSeparator}
         />
 
-        <View style={styles.buttonBottom}>
+        <View style={thisstyles.buttonBottom}>
           <Button
             title={I18n.t("annuler")}
             onPress={() => this.toggleModalVisible()}
-            buttonStyle={styles.cancelButton}
+            buttonStyle={thisstyles.cancelButton}
             icon={{ name: "close", type: "font-awesome" }}
           />
         </View>
@@ -180,5 +180,21 @@ const thisstyles = StyleSheet.create({
   title: {
     fontSize: 20,
     margin: 5
-  }
+  },
+   alignCenter: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+    buttonBottomContainer: {
+    position: 'absolute',
+    bottom: 5,
+    left:5,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  cancelButton: {
+    margin: 5,
+    borderRadius: 10,
+    backgroundColor: "orange"   
+  },
 });
